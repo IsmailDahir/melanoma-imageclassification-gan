@@ -42,6 +42,9 @@ The key findings of this project demonstrate that using GAN-based data augmentat
 
 ![image](https://github.com/user-attachments/assets/44116a4e-70ce-4cbe-bfc0-50ab51c9541c)
 
+![image](https://github.com/user-attachments/assets/8de24a54-b50e-4800-810b-92e8f99a98fa)
+
+
 
 ## ❗ Limitations
 
