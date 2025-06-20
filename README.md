@@ -30,7 +30,7 @@ The primary dataset used for this study was the SIIM-ISIC 2020 Melanoma Classifi
 The methodology employed in this project followed a structured software development life cycle with Agile principles. Initially, a comprehensive preprocessing pipeline was developed to ensure consistency in image dimensions and quality. All images were resized to 224x224 for CNN training and normalized appropriately. The cWGAN-GP was trained using only melanoma images to generate synthetic samples that reflected the minority class. This training involved feeding noise vectors and labels to the generator and training the critic (discriminator) to distinguish between real and generated images. After generating 1,000 synthetic images, they were integrated into the training set. A custom CNN classifier was trained twice: first on the original data, and again on the GAN-augmented dataset. Performance was evaluated using accuracy, precision, recall, and AUC, and further analyzed through ROC curves and training histories.
 
 ![image](https://github.com/user-attachments/assets/b61dbc04-cf4a-4e7c-a8ae-a9b4aac6670d)
-Data processing pipeline
+
 
 
 ## 📈 Key Findings
