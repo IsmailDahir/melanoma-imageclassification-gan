@@ -12,10 +12,10 @@ The main objective of this project was to design and implement a deep learning f
 
 The project was developed using Python 3.9 and leveraged several key machine learning and data science libraries including TensorFlow 2.13 with Keras, Pandas, NumPy, and Matplotlib. Early experimentation was conducted in Jupyter Notebooks, with the bulk of model training performed in Google Colab due to its access to GPU resources, specifically an NVIDIA Tesla T4 with 16GB of RAM. The conditional GAN was implemented to enhance the training data, while a custom CNN was built from scratch to ensure transparency and interpretability in the classification process. The combination of these tools allowed for efficient handling of large-scale image data, robust training, and detailed performance analysis.
 
-## 📊 Datasets
+## 📊 Dataset – Data Preprocessing and Data Augmentation
+The SIIM-ISIC 2020 dataset was selected due to its size, metadata richness, and clinical relevance. It comprises over 33,000 dermoscopic images collected from international sources. However, only a small fraction represents confirmed melanoma cases, necessitating advanced preprocessing and augmentation strategies. All images were resized to standard dimensions: 128×128 pixels for GAN training and 224×224 pixels for the CNN classifier. Normalisation was performed using pixel scaling—[-1, 1] for GANs and [0, 1] for the CNN—to facilitate optimal learning based on activation function requirements.
 
-The primary dataset used for this study was the SIIM-ISIC 2020 Melanoma Classification dataset, available on Kaggle. It contains over 33,000 dermoscopic images, but only approximately 1.7% of them are labeled as melanoma, presenting a significant class imbalance challenge. This dataset was selected due to its clinical relevance, metadata richness, and scale. It provided a reliable foundation for training and evaluating the deep learning models. The project also considered the potential integration of additional datasets such as HAM10000, PH2, and Fitzpatrick17k, to increase diversity and support future development.
-
+To address class imbalance, a cWGAN-GP was trained exclusively on melanoma images. After training, the generator produced 1,000 synthetic melanoma images, which were validated visually and integrated into the training dataset. The synthetic images were treated identically to real images in terms of format and preprocessing. This GAN-based augmentation significantly enhanced the representation of melanoma in the training set without compromising the validity of the validation and test splits, which remained composed entirely of real, unseen data.
 
 ![image](https://github.com/user-attachments/assets/82b5c5b5-f0c6-4690-85ec-1a48a51d79b4)
 
@@ -23,7 +23,11 @@ The primary dataset used for this study was the SIIM-ISIC 2020 Melanoma Classifi
 
 ## ⚙️ Methodology
 
-The methodology employed in this project followed a structured software development life cycle with Agile principles. Initially, a comprehensive preprocessing pipeline was developed to ensure consistency in image dimensions and quality. All images were resized to 224x224 for CNN training and normalized appropriately. The cWGAN-GP was trained using only melanoma images to generate synthetic samples that reflected the minority class. This training involved feeding noise vectors and labels to the generator and training the critic (discriminator) to distinguish between real and generated images. After generating 1,000 synthetic images, they were integrated into the training set. A custom CNN classifier was trained twice: first on the original data, and again on the GAN-augmented dataset. Performance was evaluated using accuracy, precision, recall, and AUC, and further analyzed through ROC curves and training histories.
+The methodology employed in this project followed a structured software development life cycle with Agile principles. The deep learning pipeline was made up of two main parts: one model to classify images and another to generate synthetic melanoma images.
+
+The classifier was a custom-built CNN (Convolutional Neural Network). It had three layers that each looked for patterns in the image, followed by layers that reduced the image size while keeping important details. At the end, there was a fully connected layer that made the final prediction—whether the image showed melanoma or not. A dropout layer was added to prevent overfitting, and a sigmoid function was used to give a clear yes/no result. This design was kept simple on purpose so it would be easier to understand and run efficiently.
+
+The second part of the system was a GAN (Generative Adversarial Network) called cWGAN-GP. It had two parts: a generator and a discriminator. The generator created fake melanoma images using random numbers and class labels as input. The discriminator tried to tell if an image was real or fake. They trained by competing with each other, which helped both improve. A special loss function (Wasserstein loss with gradient penalty) was used to make the training more stable and prevent problems like generating the same image repeatedly. The fake images were checked carefully and only the good ones were added to help train the classifier.
 
 ![image](https://github.com/user-attachments/assets/b61dbc04-cf4a-4e7c-a8ae-a9b4aac6670d)
 
