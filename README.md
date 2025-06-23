@@ -16,12 +16,13 @@ The project was developed using Python 3.9 and leveraged several key machine lea
 The SIIM-ISIC 2020 dataset was selected due to its size, metadata richness, and clinical relevance. It comprises over 33,000 dermoscopic images collected from international sources. However, only a small fraction represents confirmed melanoma cases, necessitating advanced preprocessing and augmentation strategies. All images were resized to standard dimensions: 128×128 pixels for GAN training and 224×224 pixels for the CNN classifier. Normalisation was performed using pixel scaling—[-1, 1] for GANs and [0, 1] for the CNN—to facilitate optimal learning based on activation function requirements.
 
 ![image](https://github.com/user-attachments/assets/82b5c5b5-f0c6-4690-85ec-1a48a51d79b4)
+Figure 1: Class Imbalance
 
 To address class imbalance, a cWGAN-GP was trained exclusively on melanoma images. After training, the generator produced 1,000 synthetic melanoma images, which were validated visually and integrated into the training dataset. The synthetic images were treated identically to real images in terms of format and preprocessing. This GAN-based augmentation significantly enhanced the representation of melanoma in the training set without compromising the validity of the validation and test splits, which remained composed entirely of real, unseen data.
 
 
 ![image](https://github.com/user-attachments/assets/b61dbc04-cf4a-4e7c-a8ae-a9b4aac6670d)
-
+Figure 2: Data Preprocessing Pipeline
 
 ## ⚙️ Methodology
 
@@ -39,13 +40,19 @@ The second part of the system was a GAN (Generative Adversarial Network) called 
 The key findings of this project demonstrate that using GAN-based data augmentation can significantly increase a model’s sensitivity to detecting melanoma cases. The recall rate improved from around 12% in the baseline model to 100% in the GAN-augmented model. However, this gain in sensitivity came at the cost of specificity and overall accuracy, leading to a rise in false positives. This tradeoff highlights the classic challenge in medical AI of balancing false negatives and false positives. While the GAN augmentation improved the model's ability to detect rare malignant cases, it also caused the model to misclassify some benign lesions. These findings underscore the need for further calibration and validation of such systems before clinical deployment.
 
 ![image](https://github.com/user-attachments/assets/5750c943-fdb3-4b2f-9ce4-2eb65a5a85bc)
+Figure 3: GAN Generated Images
+
 
 
 ![image](https://github.com/user-attachments/assets/44116a4e-70ce-4cbe-bfc0-50ab51c9541c)
+Figure 4: Comparison of Baseline vs GAN-Augmented Classifier
+
+
+
 
 ![image](https://github.com/user-attachments/assets/8de24a54-b50e-4800-810b-92e8f99a98fa)
 
-
+FIgure 5: Comparison of Baseline vs GAN-Augmented Classifier
 
 ## ❗ Limitations
 
