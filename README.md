@@ -16,12 +16,14 @@ The project was developed using Python 3.9 and leveraged several key machine lea
 The SIIM-ISIC 2020 dataset was selected due to its size, metadata richness, and clinical relevance. It comprises over 33,000 dermoscopic images collected from international sources. However, only a small fraction represents confirmed melanoma cases, necessitating advanced preprocessing and augmentation strategies. All images were resized to standard dimensions: 128×128 pixels for GAN training and 224×224 pixels for the CNN classifier. Normalisation was performed using pixel scaling—[-1, 1] for GANs and [0, 1] for the CNN—to facilitate optimal learning based on activation function requirements.
 
 ![image](https://github.com/user-attachments/assets/82b5c5b5-f0c6-4690-85ec-1a48a51d79b4)
+
 Figure 1: Class Imbalance
 
 To address class imbalance, a cWGAN-GP was trained exclusively on melanoma images. After training, the generator produced 1,000 synthetic melanoma images, which were validated visually and integrated into the training dataset. The synthetic images were treated identically to real images in terms of format and preprocessing. This GAN-based augmentation significantly enhanced the representation of melanoma in the training set without compromising the validity of the validation and test splits, which remained composed entirely of real, unseen data.
 
 
 ![image](https://github.com/user-attachments/assets/b61dbc04-cf4a-4e7c-a8ae-a9b4aac6670d)
+
 Figure 2: Data Preprocessing Pipeline
 
 ## ⚙️ Methodology
