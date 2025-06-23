@@ -40,11 +40,13 @@ The second part of the system was a GAN (Generative Adversarial Network) called 
 The key findings of this project demonstrate that using GAN-based data augmentation can significantly increase a model’s sensitivity to detecting melanoma cases. The recall rate improved from around 12% in the baseline model to 100% in the GAN-augmented model. However, this gain in sensitivity came at the cost of specificity and overall accuracy, leading to a rise in false positives. This tradeoff highlights the classic challenge in medical AI of balancing false negatives and false positives. While the GAN augmentation improved the model's ability to detect rare malignant cases, it also caused the model to misclassify some benign lesions. These findings underscore the need for further calibration and validation of such systems before clinical deployment.
 
 ![image](https://github.com/user-attachments/assets/5750c943-fdb3-4b2f-9ce4-2eb65a5a85bc)
+
 Figure 3: GAN Generated Images
 
 
 
 ![image](https://github.com/user-attachments/assets/44116a4e-70ce-4cbe-bfc0-50ab51c9541c)
+
 Figure 4: Comparison of Baseline vs GAN-Augmented Classifier
 
 
